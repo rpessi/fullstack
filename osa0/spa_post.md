@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant browser
     participant server
@@ -8,4 +9,5 @@ sequenceDiagram
     deactivate server
     
     Note right of browser: The browser creates new_note_spa-file and updates the new note on the screen without further server requests
+```
 
