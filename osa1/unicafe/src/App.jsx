@@ -16,13 +16,12 @@ const StatisticsLine = ({text, value}) => (
 )
 
 const Statistics = ({good, neutral, bad}) => {
-    console.log('good, neutral, bad', good, neutral, bad)
     const all = good + bad + neutral
     const average = (good-bad)/(good+neutral+bad)
     const fixedAve = average.toFixed(1)
-    const positive = good/(good+neutral+bad)
-    const fixedPosi = positive.toFixed(3)
-    const posiPer = fixedPosi * 100 + ' %'
+    const positive = 100 * good/(good+neutral+bad)
+    const fixedPosi = positive.toFixed(1)
+    const posiPer = fixedPosi + ' %'
     if (good + neutral + bad === 0) {
         return (
             <>
