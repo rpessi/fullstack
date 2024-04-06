@@ -18,11 +18,11 @@ const Header = ({ name }) => {
 }
   
 const Content = ({ parts }) => {
-  console.log('Content, parts[0]: ', parts[0])
+  console.log('Content, parts: ', parts)
   return (
     <div>
       <ul>
-        {parts.map(part => <Part part={part}/>)}
+        {parts.map(part => <Part key={part.id} part={part}/>)}
       </ul>
     </div>
   )
