@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import personService from './services/persons'
 
 const Number = ({ person }) => {
   console.log('@Number, persons', person)
@@ -74,12 +74,11 @@ const App = () => {
   const [newFiltered, setFiltered] = useState(persons)
 
   useEffect(() => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
+    personService
+      .getAll()
+        .then(initialPersons => {
         console.log('promise fulfilled')
-        setPersons(response.data)
+        setPersons(initialPersons)
       })
   }, [])
   
@@ -89,13 +88,19 @@ const App = () => {
       name: newName,
       number: newNumber
     }
-    setPersons(persons.concat(personObject))
-    console.log('persons', persons)
-    setNewName('')
-    setNewNumber('')
-    setNewFilter('')
-  }
 
+    personService
+      .create(personObject)
+        .then(returnedPerson => {
+        console.log('response', returnedPerson)
+        setPersons(persons.concat(returnedPerson))
+        console.log('@addPerson axios, returnedPerson: ', returnedPerson)
+        setNewName('')
+        setNewNumber('')
+        setNewFilter('')
+        })
+  }
+  
   const checkPerson = (event) => {
     event.preventDefault()
     const names = persons.map(person => person.name)
