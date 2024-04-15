@@ -1,26 +1,6 @@
 {
   "persons": [
     {
-      "name": "Arto Hellas",
-      "number": "040-123456",
-      "id": "1"
-    },
-    {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
-      "id": "2"
-    },
-    {
-      "name": "Dan Abramov",
-      "number": "12-43-234345",
-      "id": "3"
-    },
-    {
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122",
-      "id": "4"
-    },
-    {
       "id": "d335",
       "name": "Maija Maijanen",
       "number": "040-556622"
@@ -31,9 +11,14 @@
       "number": "020-1155226"
     },
     {
-      "id": "3e36",
-      "name": "Ville Virtanen",
-      "number": "928374"
+      "name": "Viivi Pikkuinen",
+      "number": "020-235091",
+      "id": "a379"
+    },
+    {
+      "name": "Pekka Puupää",
+      "number": "010-352351",
+      "id": "33db"
     }
   ]
 }

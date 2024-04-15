@@ -2,11 +2,8 @@ import { useState, useEffect } from 'react'
 import personService from './services/persons'
 
 const Number = ({ person }) => {
-  console.log('@Number, persons', person)
   const name = person.name
-  console.log('@Number, name: ', name)
   const number = person.number
-  console.log('@Number, number: ', number)
 
   return (
     <>
@@ -16,7 +13,6 @@ const Number = ({ person }) => {
     </>
   )
 }
-
 
 const Persons = ({ newFiltered }) => {
   return (
@@ -120,22 +116,35 @@ const App = () => {
         })
   }
 
-  const RemovePerson = ({ person }) => {
-    window.confirm(`Delete ${person.name}?`)
-      ? personService
-        .remove(person.id)
-          .then(returnedPerson => {
-            console.log('deleted response', returnedPerson.name)
-          })
-      : console.log('painettiin canceliä')
+  const updatePerson = ({ person, newNumber }) => {
+    console.log('@updatePerson, person, newNumber', person, newNumber)
+    const personObject = {
+      name: person.name,
+      number: newNumber
+    }
+    const id = person.id
+    personService
+      .update(id, personObject)
+      .then(returnedPerson => {
+        setPersons(persons.map(person => person.id !== id
+          ? person
+          : returnedPerson))
+      })
+      setNewName('')
+      setNewNumber('')
+      setNewFilter('')
   }
 
   const checkPerson = (event) => {
+    console.log('event, newName, newNumber: ', newName, newNumber )
     event.preventDefault()
     const names = persons.map(person => person.name)
-    console.log('@checkPerson, newName', newName)
+    console.log('mapped names: ', names)
+    const person = persons.filter(person => person.name === newName)[0]
+    console.log('filtered person: ', person)
+    console.log('@checkPerson, newName: ', newName)
     names.includes(newName)
-      ? alert(`${newName} is already added to phonebook`)
+      ? updatePerson({person, newNumber})
       : addPerson({newName, newNumber})
   }
 
