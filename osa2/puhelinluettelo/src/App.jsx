@@ -78,7 +78,7 @@ const RemovePerson = ({ person }) => {
           `${person.name} has already been deleted.`
         )
       })
-    : console.log('painettiin canceliä')
+    : console.log('@RemovePerson, clicked cancel')
 }
 
 const App = () => {
@@ -102,18 +102,18 @@ const App = () => {
     const personObject = {
       name: newName,
       number: newNumber
-    }
+      }
 
-    personService
-      .create(personObject)
-        .then(returnedPerson => {
-        console.log('response', returnedPerson)
-        setPersons(persons.concat(returnedPerson))
-        console.log('@addPerson axios, returnedPerson: ', returnedPerson)
-        setNewName('')
-        setNewNumber('')
-        setNewFilter('')
-        })
+      personService
+        .create(personObject)
+          .then(returnedPerson => {
+          console.log('response', returnedPerson)
+          setPersons(persons.concat(returnedPerson))
+          console.log('@addPerson axios, returnedPerson: ', returnedPerson)
+          setNewName('')
+          setNewNumber('')
+          setNewFilter('')
+          })
   }
 
   const updatePerson = ({ person, newNumber }) => {
@@ -130,9 +130,9 @@ const App = () => {
           ? person
           : returnedPerson))
       })
-      setNewName('')
-      setNewNumber('')
-      setNewFilter('')
+        setNewName('')
+        setNewNumber('')
+        setNewFilter('') 
   }
 
   const checkPerson = (event) => {
@@ -144,9 +144,12 @@ const App = () => {
     console.log('filtered person: ', person)
     console.log('@checkPerson, newName: ', newName)
     names.includes(newName)
-      ? updatePerson({person, newNumber})
+      ? window.confirm(`${newName} is already added to phonebook,
+                          replace the old number with a new one?`)
+        ? updatePerson({person, newNumber})
+        : console.log('update number? cancel selected')
       : addPerson({newName, newNumber})
-  }
+    }
 
   const handlePersonChange = (event) => {
     setNewName(event.target.value)
