@@ -10,10 +10,13 @@ const Number = ({ person }) => {
 
   return (
     <>
-      <li>{person.name} {person.number}</li>
+      <li>{person.name} {person.number}
+      <button onClick={() => RemovePerson({person})}>Delete</button>
+      </li>
     </>
   )
 }
+
 
 const Persons = ({ newFiltered }) => {
   return (
@@ -66,6 +69,22 @@ const AddNumber = ({ newNumber, handleNumberChange }) => {
   )
 }
 
+const RemovePerson = ({ person }) => {
+  window.confirm(`Delete ${person.name}?`)
+    ? personService
+      .remove(person.id)
+      .then(returnedPerson => {
+        console.log('deleted response', returnedPerson.name)
+      })
+      .catch(error => {
+        console.log('delete failed')
+        alert(
+          `${person.name} has already been deleted.`
+        )
+      })
+    : console.log('painettiin canceliä')
+}
+
 const App = () => {
   const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
@@ -100,7 +119,17 @@ const App = () => {
         setNewFilter('')
         })
   }
-  
+
+  const RemovePerson = ({ person }) => {
+    window.confirm(`Delete ${person.name}?`)
+      ? personService
+        .remove(person.id)
+          .then(returnedPerson => {
+            console.log('deleted response', returnedPerson.name)
+          })
+      : console.log('painettiin canceliä')
+  }
+
   const checkPerson = (event) => {
     event.preventDefault()
     const names = persons.map(person => person.name)
