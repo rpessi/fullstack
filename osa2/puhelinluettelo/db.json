@@ -1,29 +1,14 @@
 {
   "persons": [
     {
-      "id": "d335",
       "name": "Maija Maijanen",
-      "number": "040-556622"
+      "number": "020-12346",
+      "id": "d335"
     },
     {
-      "id": "2513",
       "name": "Ville Veijonen",
-      "number": "020-1155226"
-    },
-    {
-      "name": "Viivi Pikkuinen",
-      "number": "020-235091",
-      "id": "a379"
-    },
-    {
-      "name": "Pekka Puupää",
-      "number": "050-1235123",
-      "id": "33db"
-    },
-    {
-      "name": "Heikki Heiskanen",
-      "number": "012-123583724",
-      "id": "66b3"
+      "number": "025-123561",
+      "id": "2513"
     }
   ]
 }
